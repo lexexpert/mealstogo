@@ -1,7 +1,22 @@
 import React from "react";
-import { StatusBar, StyleSheet, SafeAreaView, View } from "react-native";
+import { StatusBar, SafeAreaView, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { RestaurantCard } from "../components/RestaurantCard.component";
+import styled from "styled-components/native";
+
+const SafeArea = styled(SafeAreaView)`
+  flex: 1;
+  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
+`;
+
+const SearchContainer = styled(View)`
+  padding: 16px;
+`;
+
+const RestaurantListContainer = styled(View)`
+  flex: 1;
+  padding: 16px;
+`;
 
 export const RestaurantsScreen = () => {
   const restaurant = {
@@ -16,22 +31,13 @@ export const RestaurantsScreen = () => {
     isClosedTemporarily: true,
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.search}>
+    <SafeArea>
+      <SearchContainer>
         <Searchbar value="" placeholder="Search" />
-      </View>
-      <View style={styles.list}>
+      </SearchContainer>
+      <RestaurantListContainer>
         <RestaurantCard restaurant={restaurant} />
-      </View>
-    </SafeAreaView>
+      </RestaurantListContainer>
+    </SafeArea>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight,
-  },
-  search: { padding: 16 },
-  list: { flex: 1, padding: 16, backgroundColor: "blue" },
-});
