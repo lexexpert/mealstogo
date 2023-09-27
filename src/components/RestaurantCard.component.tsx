@@ -1,6 +1,8 @@
 import React from "react";
 import { Card, Text } from "react-native-paper";
 import styled from "styled-components/native";
+import { useFonts as useOswald, Oswald_400Regular } from "@expo-google-fonts/oswald";
+import { useFonts as useLato, Lato_400Regular, Lato_700Bold } from "@expo-google-fonts/lato";
 
 const RestaurantCardStyled = styled(Card)`
   background-color: ${(props) => props.theme.colors?.bg?.primary};
@@ -17,11 +19,12 @@ const Title = styled(Text)`
   font-size: ${(props) => props.theme.fontSizes.title};
   padding-top: ${(props) => props.theme.space[3]};
   padding-bottom: ${(props) => props.theme.space[2]};
-  font-weight: ${(props) => props.theme.fontWeights.bold};
+  font-family: ${(props) => props.theme.fonts.heading};
 `;
 
 const Address = styled(Text)`
   font-size: ${(props) => props.theme.fontSizes.body};
+  font-family: ${(props) => props.theme.fonts.body};
 `;
 
 type RestaurantCardProps = {
@@ -37,6 +40,19 @@ type RestaurantCardProps = {
 };
 
 export const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
+  const [oswaldFontLoaded] = useOswald({
+    Oswald_400Regular,
+  });
+
+  const [latoFontLoaded] = useLato({
+    Lato_400Regular,
+    Lato_700Bold,
+  });
+
+  if (!oswaldFontLoaded || !latoFontLoaded) {
+    return null;
+  }
+
   const {
     name = "",
     icon = "",
