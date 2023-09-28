@@ -1,10 +1,20 @@
 import React from "react";
 import { Card, Text } from "react-native-paper";
 import styled from "styled-components/native";
-import { useFonts as useOswald, Oswald_400Regular } from "@expo-google-fonts/oswald";
-import { useFonts as useLato, Lato_400Regular, Lato_700Bold } from "@expo-google-fonts/lato";
+import {
+  useFonts as useOswald,
+  Oswald_400Regular,
+} from "@expo-google-fonts/oswald";
+import {
+  useFonts as useLato,
+  Lato_400Regular,
+  Lato_700Bold,
+} from "@expo-google-fonts/lato";
 import { SvgXml } from "react-native-svg";
-import star from "../../assets/star";
+import starIcon from "../../assets/star";
+import openIcon from "../../assets/open";
+import { Image } from "react-native";
+import { Spacer } from "./Spacer.componet";
 
 const RestaurantCardStyled = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
@@ -35,6 +45,17 @@ const Rating = styled.View`
   padding-bottom: ${(props) => props.theme.space[2]};
 `;
 
+const Section = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+const SectionEnd = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-end;
+`;
+
 type RestaurantCardProps = {
   restaurant: {
     name: string;
@@ -61,8 +82,6 @@ export const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
     return null;
   }
 
-  const ratingArray = Array.from(new Array(Math.floor(restaurant.rating)));
-
   const {
     name = "",
     icon = "",
@@ -72,16 +91,33 @@ export const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
     rating = 0,
     isClosedTemporarily = true,
   } = restaurant || {};
+
+  const ratingArray = Array.from(new Array(Math.floor(rating)));
+
   return (
     <RestaurantCardStyled mode="elevated">
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Card.Content>
         <Title>{name}</Title>
-        <Rating>
-          {ratingArray.map(() => (
-            <SvgXml xml={star} width={20} height={20} />
-          ))}
-        </Rating>
+        <Section>
+          <Rating>
+            {ratingArray.map((_, index) => (
+              <SvgXml key={index} xml={starIcon} width={20} height={20} />
+            ))}
+          </Rating>
+          <SectionEnd>
+            {isClosedTemporarily && (
+              <Text variant="labelMedium" style={{ color: "red" }}>
+                CLOSED TEMPORARILY
+              </Text>
+            )}
+            <Spacer position="left" size="large">
+              {isOpenNow && <SvgXml xml={openIcon} width={20} height={20} />}
+            </Spacer>
+            <Spacer position="left" size="large" />
+            <Image source={{ uri: icon }} style={{ width: 15, height: 15 }} />
+          </SectionEnd>
+        </Section>
         <Address>{address}</Address>
       </Card.Content>
     </RestaurantCardStyled>
