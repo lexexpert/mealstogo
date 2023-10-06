@@ -8,6 +8,7 @@ type Props = {
 
 export const RestaurantCardStyled = styled(Card)<Props>`
   background-color: ${({ theme }) => theme.colors.bg.primary};
+  margin-bottom: ${({ theme }) => theme.space[3]};
 `;
 
 export const RestaurantCardCover = styled(Card.Cover)<Props>`
