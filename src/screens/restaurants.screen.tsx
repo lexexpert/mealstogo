@@ -23,7 +23,7 @@ export const RestaurantsScreen = () => {
     name: "Some Restaurant",
     icon: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
     photos: [
-      "https://images.squarespace-cdn.com/content/v1/58192407b8a79b7beff7e669/1670104585943-XEJ1ILCRZ4ZQDA0AWP4K/IMG_4925.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Restaurant_N%C3%A4sinneula.jpg/640px-Restaurant_N%C3%A4sinneula.jpg",
     ],
     address: "100 some random street",
     isOpenNow: true,

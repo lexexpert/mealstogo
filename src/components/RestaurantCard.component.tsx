@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Text } from "react-native-paper";
+import { Card } from "react-native-paper";
 import styled from "styled-components/native";
 import {
   useFonts as useOswald,
@@ -15,6 +15,7 @@ import starIcon from "../../assets/star";
 import openIcon from "../../assets/open";
 import { Image } from "react-native";
 import { Spacer } from "./Spacer.componet";
+import { Text } from "./Text.component";
 
 const RestaurantCardStyled = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
@@ -98,7 +99,9 @@ export const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
     <RestaurantCardStyled mode="elevated">
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Card.Content>
-        <Title>{name}</Title>
+        <Spacer position="top" size="large">
+          <Text variant="label">{name}</Text>
+        </Spacer>
         <Section>
           <Rating>
             {ratingArray.map((_, index) => (
@@ -107,9 +110,7 @@ export const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
           </Rating>
           <SectionEnd>
             {isClosedTemporarily && (
-              <Text variant="labelMedium" style={{ color: "red" }}>
-                CLOSED TEMPORARILY
-              </Text>
+              <Text variant="error">CLOSED TEMPORARILY</Text>
             )}
             <Spacer position="left" size="large">
               {isOpenNow && <SvgXml xml={openIcon} width={20} height={20} />}
