@@ -6,6 +6,8 @@ import { theme } from "./src/theme";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, RouteProp } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import { RestaurantContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
 
 const Tab = createBottomTabNavigator();
 
@@ -31,13 +33,17 @@ const createScreenOptions = ({
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <Tab.Navigator screenOptions={createScreenOptions}>
-          <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-          <Tab.Screen name="Map" component={RestaurantsScreen} />
-          <Tab.Screen name="Settings" component={RestaurantsScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
+      <LocationContextProvider>
+        <RestaurantContextProvider>
+          <NavigationContainer>
+            <Tab.Navigator screenOptions={createScreenOptions}>
+              <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+              <Tab.Screen name="Map" component={RestaurantsScreen} />
+              <Tab.Screen name="Settings" component={RestaurantsScreen} />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </RestaurantContextProvider>
+      </LocationContextProvider>
       <ExpoStatusBar style="auto" />
     </ThemeProvider>
   );

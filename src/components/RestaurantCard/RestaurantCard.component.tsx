@@ -33,6 +33,7 @@ type RestaurantCardProps = {
     isOpenNow: boolean;
     rating: number;
     isClosedTemporarily: boolean;
+    placeId: string;
   };
 };
 
@@ -58,6 +59,7 @@ export const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
     isOpenNow = true,
     rating = 0,
     isClosedTemporarily = true,
+    placeId,
   } = restaurant || {};
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
@@ -72,18 +74,28 @@ export const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
         <Section>
           <Rating>
             {ratingArray.map((_, index) => (
-              <SvgXml key={index} xml={starIcon} width={20} height={20} />
+              <SvgXml
+                key={`star-${placeId}-${index}`}
+                xml={starIcon}
+                width={20}
+                height={20}
+              />
             ))}
           </Rating>
           <SectionEnd>
             {isClosedTemporarily && (
               <Text variant="error">CLOSED TEMPORARILY</Text>
             )}
-            <Spacer position="left" size="large">
-              {isOpenNow && <SvgXml xml={openIcon} width={20} height={20} />}
-            </Spacer>
-            <Spacer position="left" size="large" />
-            <Icon source={{ uri: icon }} />
+            {isOpenNow && (
+              <Spacer position="left" size="large">
+                <SvgXml xml={openIcon} width={20} height={20} />
+              </Spacer>
+            )}
+            {!!icon && (
+              <Spacer position="left" size="large">
+                <Icon source={{ uri: icon }} />
+              </Spacer>
+            )}
           </SectionEnd>
         </Section>
         <Address>{address}</Address>
