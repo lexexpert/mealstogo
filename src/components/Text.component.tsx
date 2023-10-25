@@ -12,11 +12,11 @@ const defaultTextStyles = (theme: DefaultTheme) => `
   `;
 
 const body = (theme: DefaultTheme) => `
-    font-size: ${theme.fontSizes.body}px;
+    font-size: ${theme.fontSizes.body};
   `;
 
 const hint = (theme: DefaultTheme) => `
-    font-size: ${theme.fontSizes.body}px;
+    font-size: ${theme.fontSizes.body};
   `;
 
 const error = (theme: DefaultTheme) => `
@@ -24,7 +24,7 @@ const error = (theme: DefaultTheme) => `
   `;
 
 const caption = (theme: DefaultTheme) => `
-    font-size: ${theme.fontSizes.caption}px;
+    font-size: ${theme.fontSizes.caption};
     font-weight: ${theme.fontWeights.bold};
   `;
 
@@ -58,3 +58,5 @@ export const Text: React.FC<TextProps> = styled(RNText)<TextProps>`
   ${({ theme }) => defaultTextStyles(theme)}
   ${({ variant = "body", theme }) => variants[variant](theme)}
 `;
+
+export default Text;
