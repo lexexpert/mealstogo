@@ -28,10 +28,12 @@ const isAndroid = Platform.OS === "android";
 
 export const CompactRestaurantInfo = ({
   restaurant,
+  isMap = false,
 }: {
   restaurant: RestaurantType;
+  isMap?: boolean;
 }) => {
-  const Image = isAndroid ? CompactWebView : CompactImage;
+  const Image = isAndroid && isMap ? CompactWebView : CompactImage;
   return (
     <Item>
       <Image source={{ uri: restaurant.photos?.[0] }} />

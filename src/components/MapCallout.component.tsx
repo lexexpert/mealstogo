@@ -6,7 +6,7 @@ import CompactRestaurantInfo from "./CompactRestaurantInfo.component";
 export const MapCallout = ({ restaurant }: { restaurant: RestaurantType }) => {
   return (
     <View>
-      <CompactRestaurantInfo restaurant={restaurant} />
+      <CompactRestaurantInfo restaurant={restaurant} isMap />
     </View>
   );
 };
