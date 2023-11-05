@@ -4,8 +4,13 @@ import { SearchMap } from "../components/SearchMap.component";
 import { RestaurantsContext } from "../services/restaurants/restaurants.context";
 import { LocationContext } from "../services/location/location.context";
 import { MapCallout } from "../components/MapCallout.component";
+import { NavigationProp } from "@react-navigation/native";
 
-export const MapScreen = () => {
+interface MapScreenProps {
+  navigation: NavigationProp<any, any>;
+}
+
+export const MapScreen = ({ navigation }: MapScreenProps) => {
   const { restaurants = [] } = useContext(RestaurantsContext);
   const { location } = useContext(LocationContext);
   const [latDelta, setLatDelta] = useState(0);
@@ -40,7 +45,11 @@ export const MapScreen = () => {
                 longitude: restaurant.geometry.location.lng,
               }}
             >
-              <Callout>
+              <Callout
+                onPress={() =>
+                  navigation.navigate("RestaurantDetails", { restaurant })
+                }
+              >
                 <MapCallout restaurant={restaurant} />
               </Callout>
             </Marker>

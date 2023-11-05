@@ -24,6 +24,7 @@ import {
   SectionEnd,
 } from "./RestaurantCard.styles";
 import { RestaurantType } from "../../types/restaurant.type";
+import { Favourite } from "../Favourite.component";
 
 type RestaurantCardProps = {
   restaurant?: RestaurantType;
@@ -58,6 +59,7 @@ export const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
 
   return (
     <RestaurantCardStyled mode="elevated">
+      <Favourite restaurant={restaurant} />
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Card.Content>
         <Spacer position="top" size="large">
