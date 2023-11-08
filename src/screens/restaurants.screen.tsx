@@ -12,7 +12,8 @@ import { FavouritesBar } from "../components/FavouritesBar.component";
 
 const RestaurantListContainer = styled(View)`
   flex: 1;
-  padding: ${(props) => props.theme.space[3]};
+  padding: ${(props) => props.theme.space[2]} ${(props) => props.theme.space[3]}
+    0;
 `;
 
 const Loading = styled(ActivityIndicator)`
