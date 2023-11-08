@@ -3,6 +3,7 @@ import { RestaurantCard } from "./RestaurantCard/RestaurantCard.component";
 import { RestaurantType } from "../types/restaurant.type";
 import { NavigationProp } from "@react-navigation/native";
 import styled from "styled-components/native";
+import { FadeInView } from "./Animations/Fade.component";
 
 const RestaurantListContainer = styled(View)`
   flex: 1;
@@ -30,7 +31,9 @@ export const RestaurantList = ({
               })
             }
           >
-            <RestaurantCard restaurant={item} />
+            <FadeInView>
+              <RestaurantCard restaurant={item} />
+            </FadeInView>
           </TouchableOpacity>
         )}
         keyExtractor={(item) => item.name.toString()}
