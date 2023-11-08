@@ -19,7 +19,9 @@ type FavouriteProps = {
 export const Favourite = ({ restaurant }: FavouriteProps) => {
   const { favourites, addToFavourites, removeFromFavourites } =
     useContext(FavouritesContext);
-  const isFavourite = favourites.find((x) => x.placeId === restaurant.placeId);
+  const isFavourite = favourites.find(
+    (x) => x?.placeId === restaurant?.placeId
+  );
 
   return (
     <FavouriteButton

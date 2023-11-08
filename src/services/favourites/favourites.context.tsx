@@ -28,8 +28,8 @@ export const FavouritesContextProvider = ({
     try {
       const jsonValue = JSON.stringify(favourites);
       await AsyncStorage.setItem("@favourites", jsonValue);
-    } catch (e) {
-      console.log("Error saving to favorites", e);
+    } catch (e: any) {
+      console.log("Error saving to favorites", e.toString());
     }
   };
 
@@ -37,8 +37,8 @@ export const FavouritesContextProvider = ({
     try {
       const jsonValue = await AsyncStorage.getItem("@favourites");
       return jsonValue != null ? setFavourites(JSON.parse(jsonValue)) : null;
-    } catch (e) {
-      console.log("Error getting favorites", e);
+    } catch (e: any) {
+      console.log("Error getting favorites", e.toString());
     }
   };
 

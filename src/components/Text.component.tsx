@@ -58,5 +58,3 @@ export const Text: React.FC<TextProps> = styled(RNText)<TextProps>`
   ${({ theme }) => defaultTextStyles(theme)}
   ${({ variant = "body", theme }) => variants[variant](theme)}
 `;
-
-export default Text;

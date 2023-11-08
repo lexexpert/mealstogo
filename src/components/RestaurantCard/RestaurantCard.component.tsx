@@ -1,14 +1,5 @@
 import React from "react";
 import { Card } from "react-native-paper";
-import {
-  useFonts as useOswald,
-  Oswald_400Regular,
-} from "@expo-google-fonts/oswald";
-import {
-  useFonts as useLato,
-  Lato_400Regular,
-  Lato_700Bold,
-} from "@expo-google-fonts/lato";
 import { SvgXml } from "react-native-svg";
 import starIcon from "../../../assets/star";
 import openIcon from "../../../assets/open";
@@ -27,23 +18,10 @@ import { RestaurantType } from "../../types/restaurant.type";
 import { Favourite } from "../Favourite.component";
 
 type RestaurantCardProps = {
-  restaurant?: RestaurantType;
+  restaurant: RestaurantType;
 };
 
 export const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
-  const [oswaldFontLoaded] = useOswald({
-    Oswald_400Regular,
-  });
-
-  const [latoFontLoaded] = useLato({
-    Lato_400Regular,
-    Lato_700Bold,
-  });
-
-  if (!oswaldFontLoaded || !latoFontLoaded) {
-    return null;
-  }
-
   const {
     name = "",
     icon = "",
