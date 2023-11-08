@@ -9,10 +9,12 @@ import { Text } from "../components/Text.component";
 
 const SettingsItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]};
+  background-color: ${(props) => props.theme.colors?.bg?.primary};
 `;
 
 const AvatarContainer = styled.View`
   align-items: center;
+  margin-top: ${(props) => props.theme.space[3]};
 `;
 
 interface SettingsScreenProps {
@@ -33,6 +35,7 @@ export const SettingsScreen = ({ navigation }: SettingsScreenProps) => {
           <Text variant="label">{user?.email}</Text>
         </Spacer>
       </AvatarContainer>
+      <Spacer position="top" size="large" />
       <List.Section>
         <SettingsItem
           title="Favourites"
