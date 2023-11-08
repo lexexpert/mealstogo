@@ -14,9 +14,6 @@ import {
   Lato_700Bold,
 } from "@expo-google-fonts/lato";
 // Services
-import { RestaurantContextProvider } from "./src/services/restaurants/restaurants.context";
-import { LocationContextProvider } from "./src/services/location/location.context";
-import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
 export default function App() {
@@ -36,13 +33,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <AuthenticationContextProvider>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantContextProvider>
-              <Navigation />
-            </RestaurantContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
+        <Navigation />
       </AuthenticationContextProvider>
       <ExpoStatusBar style="auto" />
     </ThemeProvider>
