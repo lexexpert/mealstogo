@@ -1,11 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { SafeArea } from "../components/SafeArea.component";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 import { Avatar, List } from "react-native-paper";
-import { NavigationProp } from "@react-navigation/native";
+import { NavigationProp, useFocusEffect } from "@react-navigation/native";
 import styled from "styled-components/native";
 import { Spacer } from "../components/Spacer.componet";
 import { Text } from "../components/Text.component";
+import { TouchableOpacity } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { UserType } from "../types/user.type";
 
 const SettingsItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]};
@@ -23,14 +26,33 @@ interface SettingsScreenProps {
 
 export const SettingsScreen = ({ navigation }: SettingsScreenProps) => {
   const { onLogout, user } = useContext(AuthenticationContext);
+  const [profilePicture, setProfilePicture] = useState<string | null>(null);
+
+  const getProfilePicture = async (user: Partial<UserType>) => {
+    const photoUri = await AsyncStorage.getItem(`${user?.uid}-photo`);
+    if (photoUri) {
+      setProfilePicture(photoUri);
+    }
+  };
+
+  useFocusEffect(() => {
+    getProfilePicture(user);
+  });
+
   return (
     <SafeArea>
       <AvatarContainer>
-        <Avatar.Icon
-          size={180}
-          icon="human"
-          style={{ backgroundColor: "#2182BD" }}
-        />
+        <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
+          {profilePicture ? (
+            <Avatar.Image size={180} source={{ uri: profilePicture }} />
+          ) : (
+            <Avatar.Icon
+              size={180}
+              icon="human"
+              style={{ backgroundColor: "#2182BD" }}
+            />
+          )}
+        </TouchableOpacity>
         <Spacer position="top" size="large">
           <Text variant="label">{user?.email}</Text>
         </Spacer>
