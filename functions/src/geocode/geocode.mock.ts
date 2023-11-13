@@ -1,4 +1,4 @@
-export const locations = {
+export const locations: Record<string, any> = {
   antwerp: {
     results: [
       {
@@ -33,7 +33,6 @@ export const locations = {
         },
       },
     ],
-    status: "OK",
   },
   chicago: {
     results: [

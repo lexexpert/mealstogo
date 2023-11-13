@@ -30,7 +30,6 @@ export const RestaurantContextProvider = ({
   const fetchRestaurants = async (loc: string) => {
     setIsLoading(true);
     setRestaurants([]);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
     try {
       restaturantsRequest(loc)
         .then(restaurantsTransform)

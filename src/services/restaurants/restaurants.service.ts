@@ -1,13 +1,11 @@
-import { mockImages, mocks } from "./mock";
+import { mockImages, mocks } from "../../../functions/src/places/mock";
 import camelize from "camelize-ts";
 
 export const restaturantsRequest = (location: string) => {
-  return new Promise((resolve, reject) => {
-    const mock = mocks[location];
-    if (!mock) {
-      reject("not found");
-    }
-    resolve(mock);
+  return fetch(
+    `http://127.0.0.1:5001/mealstogo-5730a/us-central1/placesNearby?location=${location}`
+  ).then((res) => {
+    return res.json();
   });
 };
 

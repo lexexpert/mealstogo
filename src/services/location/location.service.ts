@@ -1,11 +1,10 @@
 import camelize from "camelize-ts";
-import { locations } from "./location.mock";
 
 export const locationRequest = (searchTerm: string) => {
-  return new Promise((resolve, reject) => {
-    const locationMock = locations[searchTerm];
-    if (!locationMock) reject("not found");
-    resolve(locationMock);
+  return fetch(
+    `http://127.0.0.1:5001/mealstogo-5730a/us-central1/geocode?city=${searchTerm}`
+  ).then((res) => {
+    return res.json();
   });
 };
 
