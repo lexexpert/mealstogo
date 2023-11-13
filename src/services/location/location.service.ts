@@ -2,7 +2,7 @@ import camelize from "camelize-ts";
 
 export const locationRequest = (searchTerm: string) => {
   return fetch(
-    `http://127.0.0.1:5001/mealstogo-5730a/us-central1/geocode?city=${searchTerm}`
+    `${process.env.REACT_APP_FIREBASE_FUNCTION_GEOCODE}?city=${searchTerm}`
   ).then((res) => {
     return res.json();
   });

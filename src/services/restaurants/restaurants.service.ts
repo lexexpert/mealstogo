@@ -3,7 +3,7 @@ import camelize from "camelize-ts";
 
 export const restaturantsRequest = (location: string) => {
   return fetch(
-    `http://127.0.0.1:5001/mealstogo-5730a/us-central1/placesNearby?location=${location}`
+    `${process.env.REACT_APP_FIREBASE_FUNCTION_PLACES}?location=${location}`
   ).then((res) => {
     return res.json();
   });
