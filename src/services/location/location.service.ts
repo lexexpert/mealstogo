@@ -3,9 +3,13 @@ import camelize from "camelize-ts";
 export const locationRequest = (searchTerm: string) => {
   return fetch(
     `${process.env.REACT_APP_FIREBASE_FUNCTION_GEOCODE}?city=${searchTerm}`
-  ).then((res) => {
-    return res.json();
-  });
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 export const locationTransform = (result: unknown) => {

@@ -87,7 +87,6 @@ export const AuthenticationContextProvider = ({
         setError("");
       })
       .catch((error: any) => {
-        console.log({ error });
         setIsLoading(false);
         const errorMessage = error.message;
         setError(errorMessage);

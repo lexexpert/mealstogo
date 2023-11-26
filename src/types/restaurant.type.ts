@@ -1,7 +1,7 @@
 export type RestaurantType = {
   name: string;
   icon: string;
-  photos: string[];
+  formattedPhotos: string[];
   address: string;
   isOpenNow: boolean;
   rating: number;

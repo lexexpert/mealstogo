@@ -32,7 +32,7 @@ export const RestaurantContextProvider = ({
     setRestaurants([]);
     try {
       restaturantsRequest(loc)
-        .then(restaurantsTransform)
+        .then((res) => restaurantsTransform({ results: res?.results || [] }))
         .then((results) => {
           setRestaurants(results);
         });

@@ -9,6 +9,16 @@ export const LocationContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [location, setLocation] = useState<{
+    viewport: {
+      northeast: {
+        lat: number;
+        lng: number;
+      };
+      southwest: {
+        lat: number;
+        lng: number;
+      };
+    };
     lat: number;
     lng: number;
   } | null>(null);

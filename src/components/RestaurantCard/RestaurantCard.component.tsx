@@ -25,7 +25,7 @@ export const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
   const {
     name = "",
     icon = "",
-    photos = [],
+    formattedPhotos = [],
     address = "",
     isOpenNow = true,
     rating = 0,
@@ -38,7 +38,7 @@ export const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
   return (
     <RestaurantCardStyled mode="elevated">
       <Favourite restaurant={restaurant} />
-      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      <RestaurantCardCover key={name} source={{ uri: formattedPhotos[0] }} />
       <Card.Content>
         <Spacer position="top" size="large">
           <Text variant="label">{name}</Text>

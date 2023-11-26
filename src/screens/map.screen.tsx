@@ -14,11 +14,11 @@ export const MapScreen = ({ navigation }: MapScreenProps) => {
   const { restaurants = [] } = useContext(RestaurantsContext);
   const { location } = useContext(LocationContext);
   const [latDelta, setLatDelta] = useState(0);
-  const { viewport, lat, lng } = location;
+  const { viewport, lat, lng } = location || {};
 
   useEffect(() => {
-    const northEastLat = viewport.northeast.lat;
-    const southWestLat = viewport.southwest.lat;
+    const northEastLat = viewport?.northeast?.lat || 0;
+    const southWestLat = viewport?.southwest?.lat || 0;
     const latDelta = northEastLat - southWestLat;
     setLatDelta(latDelta);
   }, [location, viewport]);

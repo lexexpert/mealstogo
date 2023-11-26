@@ -1,3 +1,4 @@
+import { RestaurantType } from "./../../../../src/types/restaurant.type";
 import antwerp from "./antwerp";
 import chicago from "./chicago";
 import toronto from "./toronto";
@@ -20,9 +21,9 @@ export const mockImages = [
   "https://www.foodiesfeed.com/wp-content/uploads/2019/02/pizza-ready-for-baking-600x400.jpg",
 ];
 
-export const addMockImage = (restaurant: any) => {
+export const addMockImage = (restaurant: RestaurantType) => {
   const randomIndex = Math.ceil(Math.random() * (mockImages.length - 1));
-  restaurant.photos = [mockImages[randomIndex]];
+  restaurant.formattedPhotos = [mockImages[randomIndex]];
 
   return restaurant;
 };
